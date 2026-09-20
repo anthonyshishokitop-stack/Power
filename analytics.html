@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics & Insights | City of Tshwane</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <div>
+          <h1>City of Tshwane</h1>
+          <p>Smart Outage Management System</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="report.html" class="nav-link">Report Outage</a>
+        <a href="dispatcher.html" class="nav-link">Dispatcher</a>
+        <a href="technician.html" class="nav-link">Technician</a>
+        <a href="analytics.html" class="nav-link active">Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="page-header">
+      <h2>Analytics & Insights</h2>
+      <p>Measure response times, identify recurring problems and improve resource allocation.</p>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="aTotal">0</div>
+        <div class="stat-label">Total Outages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="aAvgResponse">—</div>
+        <div class="stat-label">Avg Response (min)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="aAvgResolution">—</div>
+        <div class="stat-label">Avg Resolution (min)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="aResolvedPct">0%</div>
+        <div class="stat-label">Resolution Rate</div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <h3>Outages by Status</h3>
+        <canvas id="statusChart" height="220"></canvas>
+      </div>
+      <div class="card">
+        <h3>Outages by Severity</h3>
+        <canvas id="severityChart" height="220"></canvas>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <h3>Outages by Type</h3>
+        <canvas id="typeChart" height="220"></canvas>
+      </div>
+      <div class="card">
+        <h3>Response Time Trend (Recent)</h3>
+        <canvas id="responseChart" height="220"></canvas>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Recurring / Hotspot Areas</h3>
+      <div id="hotspots" class="hotspot-list"></div>
+    </section>
+
+    <section class="card">
+      <h3>Data Export & Reset</h3>
+      <p class="subtitle">All data is stored in your browser (localStorage). You can export or clear for a fresh demo.</p>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="OutageSystem.exportData()">Export JSON</button>
+        <button class="btn btn-secondary" onclick="OutageSystem.seedDemoData()">Load Demo Data</button>
+        <button class="btn btn-danger" onclick="OutageSystem.clearAllData()">Clear All Data</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>City of Tshwane Smart Outage Management Solution · Demo System</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      OutageSystem.init();
+      OutageSystem.renderAnalytics();
+    });
+  </script>
+</body>
+</html>
