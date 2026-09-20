@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Outage Management | City of Tshwane</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <div>
+          <h1>City of Tshwane</h1>
+          <p>Smart Outage Management System</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Dashboard</a>
+        <a href="report.html" class="nav-link">Report Outage</a>
+        <a href="dispatcher.html" class="nav-link">Dispatcher</a>
+        <a href="technician.html" class="nav-link">Technician</a>
+        <a href="analytics.html" class="nav-link">Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <h2>Real-time Outage Management Platform</h2>
+      <p>Connect customers, dispatchers, technicians and municipal teams on one platform.</p>
+      <div class="hero-actions">
+        <a href="report.html" class="btn btn-primary">Report an Outage</a>
+        <a href="dispatcher.html" class="btn btn-secondary">Open Dispatcher Console</a>
+      </div>
+    </section>
+
+    <section class="stats-grid" id="statsGrid">
+      <div class="stat-card">
+        <div class="stat-value" id="statOpen">0</div>
+        <div class="stat-label">Open Outages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statCritical">0</div>
+        <div class="stat-label">Critical Priority</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statAssigned">0</div>
+        <div class="stat-label">Assigned Jobs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statResolved">0</div>
+        <div class="stat-label">Resolved Today</div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <h3>Live Outage Map</h3>
+        <div id="map" class="map-container"></div>
+      </div>
+      <div class="card">
+        <h3>Recent Outages</h3>
+        <div id="recentOutages" class="outage-list"></div>
+      </div>
+    </section>
+
+    <section class="process-flow card">
+      <h3>End-to-End Process Demonstrated</h3>
+      <div class="flow">
+        <div class="flow-step">Report</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Verify / Deduplicate</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Prioritise</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Dispatch</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Assign</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Track</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Repair</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Notify</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Close</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Analyse</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>City of Tshwane Smart Outage Management Solution · Demo System · Data stored locally in browser</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      OutageSystem.init();
+      OutageSystem.renderDashboard();
+    });
+  </script>
+</body>
+</html>
