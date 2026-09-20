@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technician View | City of Tshwane</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <div>
+          <h1>City of Tshwane</h1>
+          <p>Smart Outage Management System</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="report.html" class="nav-link">Report Outage</a>
+        <a href="dispatcher.html" class="nav-link">Dispatcher</a>
+        <a href="technician.html" class="nav-link active">Technician</a>
+        <a href="analytics.html" class="nav-link">Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="page-header">
+      <h2>Technician Mobile View</h2>
+      <p>View assigned jobs, update status, track location and close jobs. GPS simulation included.</p>
+    </section>
+
+    <section class="card">
+      <div class="form-group">
+        <label for="techSelect">Select Your Technician Profile</label>
+        <select id="techSelect" onchange="OutageSystem.loadTechJobs()"></select>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <h3>My Assigned Jobs</h3>
+        <div id="myJobs" class="outage-list"></div>
+      </div>
+      <div class="card">
+        <h3>Job Location & Tracking</h3>
+        <div id="techMap" class="map-container"></div>
+        <div id="trackingInfo" class="tracking-info"></div>
+      </div>
+    </section>
+
+    <!-- Status Update Modal -->
+    <div id="statusModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Update Job Status</h3>
+        <p id="statusJobInfo"></p>
+        <div class="form-group">
+          <label for="newStatus">New Status</label>
+          <select id="newStatus">
+            <option value="En Route">En Route (Travelling)</option>
+            <option value="Nearby">Nearby</option>
+            <option value="On Site">On Site</option>
+            <option value="In Progress">Repair In Progress</option>
+            <option value="Resolved">Resolved / Completed</option>
+            <option value="Delayed">Delayed</option>
+            <option value="Reassigned">Request Reassignment</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="statusNotes">Notes / Reason</label>
+          <textarea id="statusNotes" rows="3" placeholder="Work performed, delay reason, parts used..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="OutageSystem.confirmStatusUpdate()">Update Status</button>
+          <button class="btn btn-secondary" onclick="OutageSystem.closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>City of Tshwane Smart Outage Management Solution · Demo System</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      OutageSystem.init();
+      OutageSystem.renderTechnician();
+    });
+  </script>
+</body>
+</html>
